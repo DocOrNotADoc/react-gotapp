@@ -7,17 +7,32 @@ import ErrorMessage from '../errorMessage/errorMessage';
 
 export default class RandomChar extends Component {
 
-    constructor() {
-        super();
-        this.updateChair();
-    }
-
     gotService = new GotService();
 
     state = {
         char: {},
         loading: true,
         error: false
+    }
+
+    componentDidMount() {
+        this.updateChair();
+        this.timerId = setInterval(this.updateChair, 3000);
+        // console.log('mounting');
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.timerId);
+        // console.log('unmounting');
+    }
+
+    // ????
+    componentDidCatch() {
+        // console.log('error');
+        this.setState({
+            error: true,
+            loading: false
+        })
     }
 
     onCharLoaded = (char) => {
@@ -34,7 +49,8 @@ export default class RandomChar extends Component {
         })
     }
 
-    updateChair() {
+    updateChair = () => {
+        // console.log('update');
         const id = Math.floor(Math.random()*140 + 25); //25-140
         // const id = 453843875; //error test
         this.gotService.getCharacter(id)
@@ -44,12 +60,25 @@ export default class RandomChar extends Component {
 
     render() {
 
+        // console.log('render');
+
         const {char, loading, error} = this.state;
 
-        const errorMessage = error ? <ErrorMessage/> : null;
+        // const errorMessage = error ? <ErrorMessage/> : null;
         const spinner = loading ? <Spinner/> : null;
         const content = !(loading || error) ? <View char={char}/> : null;
 
+        const NotError = () => {
+            return (
+                <RandomCharBlock>
+                    {/* {errorMessage} */}
+                    {spinner}
+                    {content}
+                </RandomCharBlock>
+            )
+        }
+
+        const itIsError = error ? <ErrorMessage/> : <NotError/>;
 
         const RandomCharBlock = styled.div`
                 background-color: #fff;
@@ -64,27 +93,26 @@ export default class RandomChar extends Component {
                 font-weight: bold;
             }
             img {
-                width: 100%;
+
             }
             loadingio-spinner-spinner-u5v2nvkavip {
                 margin: 0 auto;
             }
         `;
         
+        
         return (
-            <RandomCharBlock>
-                {errorMessage}
-                {spinner}
-                {content}
-            </RandomCharBlock>
+            <>
+            {itIsError}
+            </>
         );
     }
 }
 
 const RandomCharStatesList = styled.ul`
-            display: flex;
-            flex-direction: column;
-        `;
+    display: flex;
+    flex-direction: column;
+`;
 
 const RandomCharState = styled.li`
     display: flex;
@@ -95,29 +123,37 @@ const RandomCharState = styled.li`
         &:first-child {
         border-top-width: 0;
     }
+    span {
+        font-weight: bold;
+    }
+    div {
+        text-aligin: left;
+    }
 `;
 
 const View = ({char}) => {
+
     const {name, gender, born, died, culture} = char;
+
     return (
         <>
             <h4>Random Character: {name}</h4>
                 <RandomCharStatesList>
                     <RandomCharState>
-                        <span className="term">Gender </span>
-                        <span>{gender}</span>
+                        <span>Gender </span>
+                        <div>{gender}</div>
                     </RandomCharState>
                     <RandomCharState>
-                        <span className="term">Born </span>
-                        <span>{born}</span>
+                        <span>Born </span>
+                        <div>{born}</div>
                     </RandomCharState>
                     <RandomCharState>
-                        <span className="term">Died </span>
-                        <span>{died}</span>
+                        <span>Died </span>
+                        <div>{died}</div>
                     </RandomCharState>
                     <RandomCharState>
-                        <span className="term">Culture </span>
-                        <span>{culture}</span>
+                        <span>Culture </span>
+                        <div>{culture}</div>
                     </RandomCharState>
                 </RandomCharStatesList>
         </>

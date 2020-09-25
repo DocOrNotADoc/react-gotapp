@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 // import GotService from '../../services/gotService';
 import Header from '../header/header';
 import RandomChar from '../randomChar/randomChar';
-import ItemList from '../namesList/namesList';
-import CharDetails from '../charDetails/charDetails';
 import styled from 'styled-components';
+import ErrorMessage from '../errorMessage/errorMessage';
+import CharacterPage from '../characterPage/characterPage';
+// import CharCardPattern from '../CharCardPattern/CharCardPattern';
 
 
 export default class App extends Component {
@@ -12,7 +13,16 @@ export default class App extends Component {
     // переделать. Список имён (сделать уже) справа, выбранный персонаж слева. Куда случайного?
 
     state = {
-        showRandomChar: true
+        showRandomChar: true,
+        error: false,
+        selectedChar: 130
+    }
+
+    componentDidCatch() {
+        console.log('error');
+        this.setState({
+            error: true
+        })
     }
 
     toggleRandomChar = () => {
@@ -24,6 +34,10 @@ export default class App extends Component {
     }
 
     render () {
+
+        if (this.state.error) {
+            return <ErrorMessage/>
+        }
 
         const char = this.state.showRandomChar ? <RandomChar/> : null;
 
@@ -50,15 +64,9 @@ export default class App extends Component {
                         </div>
                     </div>
                     <BtnToggleRandom
-                        onClick={this.toggleRandomChar}>Toggle random</BtnToggleRandom>
-                    <div className='row'>
-                        <div className='col-md-6'>
-                            <ItemList />
-                        </div>
-                        <div className='col-md-6'>
-                            <CharDetails />
-                        </div>
-                    </div>
+                    onClick={this.toggleRandomChar}>Toggle random</BtnToggleRandom>
+                    <CharacterPage/>
+                    {/* <CharCardPattern onCharSelected={this.onCharSelected}/> */}
                 </div>
             </>
         );
