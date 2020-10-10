@@ -1,51 +1,49 @@
 import React, {Component} from 'react';
-// import './itemList.css';
 import styled from 'styled-components';
-import GotService from '../../services/gotService';
 import Spinner from '../spinner/spinner';
 import ErrorMessage from '../errorMessage/errorMessage';
 
 export default class ItemList extends Component {
 
-    gotService = new GotService();
-
     state = {
-        charList: null,
+        itemList: null,
         error: false
     }
 
     componentDidMount() {
-        this.gotService.getAllCharacters()
-            .then((charList) => {
+
+        const {getData} = this.props;
+
+        getData()
+            .then((itemList) => {
                 this.setState({
-                    charList,
+                    itemList,
                     error: false
                 });
             })
             .catch(() => {this.onError()});
     }
-
     componentDidCatch(){
         this.setState({
-            charList: null,
+            itemList: null,
             error: true
         })
     }
     onError(){
         this.setState({
-            charList: null,
+            itemList: null,
             error: true
         })
     }
 
     render() {
 
-        const {charList, error} = this.state;
+        const {itemList, error} = this.state;
 
         if (error) {
             return <ErrorMessage/>
         }
-        if (!charList) {
+        if (!itemList) {
             return <Spinner/>
         }
 
@@ -53,7 +51,7 @@ export default class ItemList extends Component {
             background-color: #fff;
             padding: 7px 25px;
             margin-bottom: 40px;
-            border-radius: 0.25rem;
+            border-radius: 0.4rem;
             cursor: pointer;
         `;
         const NameOfChar = styled.li`
@@ -67,23 +65,24 @@ export default class ItemList extends Component {
         `;
 
         const renderItems = (arr) => {
-            return arr.map((item, i) => {
+            return arr.map((item) => {
+                const {id} = item;
+                const label = this.props.renderItem(item);
                 return (
                     <NameOfChar
-                        key={i}
-                        onClick={() => this.props.onCharSelected(i)}>
-                        {item.name}
+                        key={id}
+                        onClick={() => this.props.onItemSelected(id)}>
+                            {label}
                     </NameOfChar>
                 )
             })
         }
 
-        const items = renderItems(charList);
+        const items = renderItems(itemList);
 
         return (
             <NamesList>
                 {items}
-                {/* {renderItems(charList)} */}
             </NamesList>
         );
     }

@@ -128,29 +128,29 @@ const RandomCharState = styled.li`
 
 const View = ({char}) => {
 
-    const {name, gender, born, died, culture} = char;
+  const {name, gender, born, died, culture} = char;
 
-    return (
-        <>
-            <h4>Random Character: {name}</h4>
-                <RandomCharStatesList>
-                    <RandomCharState>
-                        <span>Gender </span>
-                        <div>{gender}</div>
-                    </RandomCharState>
-                    <RandomCharState>
-                        <span>Born </span>
-                        <div>{born}</div>
-                    </RandomCharState>
-                    <RandomCharState>
-                        <span>Died </span>
-                        <div>{died}</div>
-                    </RandomCharState>
-                    <RandomCharState>
-                        <span>Culture </span>
-                        <div>{culture}</div>
-                    </RandomCharState>
-                </RandomCharStatesList>
-        </>
-    )
+  return (
+    <>
+      <h4>Random Character: {name}</h4>
+          <RandomCharStatesList>
+            <RandomCharState>
+              <span>Gender </span>
+              <div>{gender}</div>
+            </RandomCharState>
+            <RandomCharState>
+              <span>Born </span>
+              <div>{born}</div>
+            </RandomCharState>
+            <RandomCharState>
+              <span>Died </span>
+              <div>{died}</div>
+            </RandomCharState>
+            <RandomCharState>
+              <span>Culture </span>
+              <div>{culture}</div>
+            </RandomCharState>
+          </RandomCharStatesList>
+    </>
+  )
 }
