@@ -7,7 +7,8 @@ export default class ItemList extends Component {
 
     state = {
         itemList: null,
-        error: false
+        error: false,
+        // active: null
     }
 
     componentDidMount() {
@@ -37,6 +38,8 @@ export default class ItemList extends Component {
     }
 
     render() {
+
+        // var clazzNames = '';
 
         const {itemList, error} = this.state;
 

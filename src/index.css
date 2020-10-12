@@ -18,3 +18,9 @@ a:active {
     text-decoration: none;
     color: inherit;
 }
+.active {
+    color: #3399ff;
+}
+.selected{
+    font-weight: 700;
+}

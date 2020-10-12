@@ -37,16 +37,13 @@ const Header = () => {
             </HeaderTitle>
             <HeaderLinks>
                 <li>
-                    {/* <Link to='/characters'>Characters</Link> для абсолютного пути - как бы, указываем файл */}
-                    <Link to='/characters/'>Characters</Link> {/* для относительного пути без ошибки - как бы, указываем папку  */}
+                    <Link to='/characters/'>Characters</Link>
                 </li>
                 <li>
-                    {/* <Link to='/houses'>Houses</Link> для абсолютного пути - как бы, указываем файл  */}
-                    <Link to='/houses/'>Houses</Link> {/* для относительного пути без ошибки - как бы, указываем папку  */}
+                    <Link to='/houses/'>Houses</Link>
                 </li>
                 <li>
-                    {/* <Link to='/books'>Books</Link>   для абсолютного пути - как бы, указываем файл  */}
-                    <Link to='/books/'>Books</Link> {/* для относительного пути без ошибки - как бы, указываем папку  */}
+                    <Link to='/books/'>Books</Link>
                 </li>
             </HeaderLinks>
         </HeaderBlock>
