@@ -11,7 +11,7 @@ const HeaderBlock = styled.div`
 
 const HeaderTitle = styled.h3`
     font-size: 24px;
-    color: #fff;
+    color: #f5f5ef;
     margin: 0;
 `;
 
@@ -19,7 +19,7 @@ const HeaderLinks = styled.ul`
     display: flex;
     margin: 0;
     align-items: center;
-    color: #fff;
+    color: #f5f5ef;
     list-style-type: none;
     li {
         margin-right: 20px;
@@ -32,7 +32,7 @@ const Header = () => {
         <HeaderBlock>
             <HeaderTitle>
                 <Link to='/'>
-                Game of Thrones DB
+                    Game of Thrones DB
                 </Link>
             </HeaderTitle>
             <HeaderLinks>

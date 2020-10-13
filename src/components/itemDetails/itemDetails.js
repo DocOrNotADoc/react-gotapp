@@ -7,7 +7,7 @@ const ItemDetailsElement = styled.li`
             display: flex;
             justify-content: space-between;
             padding: 0.75rem 1.25rem;
-            background-color: #fff;
+            background-color: #f5f5ef;
             border-top: 1px solid rgba(0, 0, 0, 0.125);
             &:first-child {
                 border-top-width: 0;
@@ -71,17 +71,19 @@ export default class ItemDetails extends Component {
     render() {
 
         const SelectError = styled.span`
-            background-color: #fff;
+            background-color: #f5f5ef;
             padding: 5px 15px;
             border-radius: 0.4rem;
             text-align: center;
             font-size: 26px;
+            border: 1px solid rgba(0, 0, 0, 0.125);
         `;
         const ItemDetailsCard = styled.div`
-            background-color: #fff;
+            background-color: #f5f5ef;
             padding: 25px 25px 15px 25px;
             margin-bottom: 40px;
             border-radius: 0.4rem;
+            border: 1px solid rgba(0, 0, 0, 0.125);
             h4 {
                 margin-bottom: 20px;
                 text-align: center;

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import GotService from '../../services/gotService';
 import Spinner from '../spinner/spinner';
 import ErrorMessage from '../errorMessage/errorMessage';
+import PropTypes from 'prop-types';
 
 export default class RandomChar extends Component {
 
@@ -13,10 +14,16 @@ export default class RandomChar extends Component {
         loading: true,
         error: false
     }
+    static defaultProps = {
+        interval: 3000
+    }
+    static propTypes = {
+        interval: PropTypes.number
+    }
 
     componentDidMount() {
         this.updateChair();
-        this.timerId = setInterval(this.updateChair, 3000);
+        this.timerId = setInterval(this.updateChair, this.props.interval);
     }
     componentWillUnmount() {
         clearInterval(this.timerId);
@@ -66,7 +73,7 @@ export default class RandomChar extends Component {
         const itIsError = error ? <ErrorMessage/> : <NotError/>;
 
         const RandomCharBlock = styled.div`
-                background-color: #fff;
+                background-color: #f5f5ef;
                 padding: 25px 25px 15px 25px;
                 margin-bottom: 40px;
                 border-radius: 0.25rem;
@@ -102,7 +109,7 @@ const RandomCharState = styled.li`
     display: flex;
     justify-content: space-between;
     padding: 0.75rem 1.25rem;
-    background-color: #fff;
+    background-color: #f5f5ef;
     border-top: 1px solid rgba(0, 0, 0, 0.125);
         &:first-child {
         border-top-width: 0;
@@ -114,6 +121,21 @@ const RandomCharState = styled.li`
         text-aligin: left;
     }
 `;
+
+// RandomChar.defaultProps = {
+//     interval: 3000
+// }
+// RandomChar.propTypes = {
+//     // interval: (props, propName, componentName) => {
+//     //     const value = props[propName];
+
+//     //     if (typeof value === 'number' && !isNaN(value)) {
+//     //         return null
+//     //     }
+//     //     return new TypeError(`${componentName}: ${propName} must be a number`)
+//     // }
+//     interval: PropTypes.number
+// }
 
 const View = ({char}) => {
 

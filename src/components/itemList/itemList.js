@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import styled from 'styled-components';
 import Spinner from '../spinner/spinner';
 import ErrorMessage from '../errorMessage/errorMessage';
+import PropTypes from 'prop-types';
 
 export default class ItemList extends Component {
 
@@ -9,6 +10,12 @@ export default class ItemList extends Component {
         itemList: null,
         error: false,
         // active: null
+    }
+    static defaultProps = {
+        onItemSelected: () => {}
+    }
+    static PropTypes = {
+        onItemSelected: PropTypes.func
     }
 
     componentDidMount() {
@@ -51,16 +58,17 @@ export default class ItemList extends Component {
         }
 
         const NamesList = styled.ul`
-            background-color: #fff;
+            background-color: #f5f5ef;
             padding: 7px 25px;
             margin-bottom: 40px;
             border-radius: 0.4rem;
             cursor: pointer;
+            border: 1px solid rgba(0, 0, 0, 0.125);
         `;
         const NameOfChar = styled.li`
             display: block;
             padding: 0.75rem 1.25rem;
-            background-color: #fff;
+            background-color: #f5f5ef;
             border-top: 1px solid rgba(0, 0, 0, 0.125);
             &:first-child {
                 border-top-width: 0;
@@ -90,3 +98,10 @@ export default class ItemList extends Component {
         );
     }
 }
+// ItemList.defaultProps = {
+//     onItemSelected: () => {}
+// }
+// ItemList.PropTypes = {
+//     onItemSelected: PropTypes.func,
+//     // getData: PropTypes.arrayOf(PropTypes.object)
+// }

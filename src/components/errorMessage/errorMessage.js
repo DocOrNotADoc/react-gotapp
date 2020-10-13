@@ -3,7 +3,7 @@ import img from './error.jpg';
 import styled from 'styled-components';
 
 const ErrorMessageBlock = styled.div`
-  background-color: #fff;
+  background-color: #f5f5ef;
   margin-bottom: 40px;
   padding: 20px 20px 10px 20px;
   border-radius: 0.25rem;

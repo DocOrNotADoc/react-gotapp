@@ -6,7 +6,7 @@ export default class WelcomeComponent extends Component {
   render(){
 
     const WelcomeCard = styled.div`
-      background-color: #fff;
+      background-color: #f5f5ef;
       padding: 25px 25px 15px 25px;
       margin-top: 90px;
       // margin-bottom: 40px;

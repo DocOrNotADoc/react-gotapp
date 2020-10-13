@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ItemList from '../itemList/itemList';
+import ItemList from '../itemList/booksListCustomStyled';
 import ErrorMessage from '../errorMessage/errorMessage';
 import GotService from '../../services/gotService';
 import {withRouter} from 'react-router-dom';
@@ -14,9 +14,9 @@ export class BooksListPage extends Component {
   }
 
   componentDidCatch() {
-      this.setState({
-          error: true
-      })
+    this.setState({
+        error: true
+    })
   }
 
   render() {

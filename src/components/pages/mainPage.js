@@ -32,7 +32,7 @@ export default class MainPage extends Component{
       return <ErrorMessage/>
     }
 
-    const char = this.state.showRandomChar ? <RandomChar/> : null;
+    const char = this.state.showRandomChar ? <RandomChar interval={3000}/> : null;
 
     // const BtnToggleRandom = styled.button`
     //   width: 150px;
