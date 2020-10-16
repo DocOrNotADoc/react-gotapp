@@ -3,59 +3,57 @@ import styled from 'styled-components';
 import Spinner from '../spinner/spinner';
 import ErrorMessage from '../errorMessage/errorMessage';
 import PropTypes from 'prop-types';
+import gotService from '../../services/gotService';
 
-export default class ItemList extends Component {
+class ItemList extends Component {
 
-    state = {
-        itemList: null,
-        error: false,
-        // active: null
-    }
-    static defaultProps = {
-        onItemSelected: () => {}
-    }
-    static PropTypes = {
-        onItemSelected: PropTypes.func
-    }
+    // state = {
+    //     itemList: null,
+    //     error: false
+    // }
+    // static defaultProps = {
+    //     onItemSelected: () => {}
+    // }
+    // static PropTypes = {
+    //     onItemSelected: PropTypes.func
+    // }
 
-    componentDidMount() {
+    // componentDidMount() {
 
-        const {getData} = this.props;
+    // const {getData} = this.props;
 
-        getData()
-            .then((itemList) => {
-                this.setState({
-                    itemList,
-                    error: false
-                });
-            })
-            .catch(() => {this.onError()});
-    }
-    componentDidCatch(){
-        this.setState({
-            itemList: null,
-            error: true
-        })
-    }
-    onError(){
-        this.setState({
-            itemList: null,
-            error: true
-        })
-    }
+    // getData()
+    //     .then((itemList) => {
+    //         this.setState({
+    //             itemList,
+    //             error: false
+    //         });
+    //     })
+    //     .catch(() => {this.onError()});
+    // }
+    // componentDidCatch(){
+    //     this.setState({
+    //         itemList: null,
+    //         error: true
+    //     })
+    // }
+    // onError(){
+    //     this.setState({
+    //         itemList: null,
+    //         error: true
+    //     })
+    // }
 
     render() {
 
-        // var clazzNames = '';
+        // const {itemList, error} = this.state;
 
-        const {itemList, error} = this.state;
-
-        if (error) {
-            return <ErrorMessage/>
-        }
-        if (!itemList) {
-            return <Spinner/>
-        }
+        // if (error) {
+        //     return <ErrorMessage/>
+        // }
+        // if (!itemList) {
+        //     return <Spinner/>
+        // }
 
         const NamesList = styled.ul`
             background-color: #f5f5ef;
@@ -89,7 +87,9 @@ export default class ItemList extends Component {
             })
         }
 
-        const items = renderItems(itemList);
+        const { data } = this.props;
+
+        const items = renderItems(data);
 
         return (
             <NamesList>
@@ -98,10 +98,62 @@ export default class ItemList extends Component {
         );
     }
 }
-// ItemList.defaultProps = {
-//     onItemSelected: () => {}
-// }
-// ItemList.PropTypes = {
-//     onItemSelected: PropTypes.func,
-//     // getData: PropTypes.arrayOf(PropTypes.object)
-// }
+
+const withData = (View, getData) => {
+    return class extends Component {
+
+        state = {
+            data: null,
+            error: false
+        }
+        static defaultProps = {
+            onItemSelected: () => {}
+        }
+        static PropTypes = {
+            onItemSelected: PropTypes.func
+        }
+    
+        componentDidMount() {
+    
+            // const {getData} = this.props;
+    
+            getData()
+                .then((data) => {
+                    this.setState({
+                        data,
+                        error: false
+                    });
+                })
+            .catch(() => {this.onError()});
+        }
+        componentDidCatch(){
+            this.setState({
+                data: null,
+                error: true
+            })
+        }
+        onError(){
+            this.setState({
+                data: null,
+                error: true
+            })
+        }
+
+        render () {
+
+            const {data, error} = this.state;
+
+            if (error) {
+                return <ErrorMessage/>
+            }
+            if (!data) {
+                return <Spinner/>
+            }
+
+            return <View {...this.props} data={data}/>
+        }
+    }
+}
+
+const {getAllCharacters} = new gotService();
+export default withData(ItemList, getAllCharacters);
