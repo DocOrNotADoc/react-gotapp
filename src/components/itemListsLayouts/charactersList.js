@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 
-class BooksList extends Component {
+//сделать по HW.md
+export default class CharactersList extends Component {
 
   render() {
 
-      const NamesList = styled.ul`
+      const CharzLizt = styled.ul`
           background-color: #f5f5ef;
           padding: 7px 25px;
           margin-bottom: 40px;
@@ -42,9 +43,9 @@ class BooksList extends Component {
       const items = renderItems(data);
 
       return (
-          <NamesList>
+          <CharzLizt>
               {items}
-          </NamesList>
+          </CharzLizt>
       );
   }
 }

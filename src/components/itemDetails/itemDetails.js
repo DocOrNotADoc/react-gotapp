@@ -113,8 +113,6 @@ export default class ItemDetails extends Component {
         const {item} = this.state
         const {name} = item;
 
-        
-
         return (
             <ItemDetailsCard>
                 <h4>{name}</h4>
