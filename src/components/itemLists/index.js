@@ -1,8 +1,8 @@
 import BooksList from './booksList';
-import CharactersList from './charactersList';
+import CharList from './charList';
 import HousesList from './housesList';
 export {
   BooksList,
-  CharactersList,
+  CharList,
   HousesList
 }

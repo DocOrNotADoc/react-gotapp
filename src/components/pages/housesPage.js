@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ItemList from '../itemList/itemList';
+import {HousesList} from '../itemLists';
 import ItemDetails, {Field} from '../itemDetails/itemDetails';
 import ErrorMessage from '../errorMessage/errorMessage';
 import GotService from '../../services/gotService';
@@ -34,7 +34,7 @@ export default class HousesPage extends Component {
     }
 
     const itemList = (
-      <ItemList
+      <HousesList
         onItemSelected={this.onItemSelected}
         getData={this.gotService.getAllHouses}
         renderItem={({name}) => `${name}`}/>

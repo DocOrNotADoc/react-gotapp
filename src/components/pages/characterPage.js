@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ItemList from '../itemList/itemList';
+import {CharList} from '../itemLists';
 import ItemDetails, {Field} from '../itemDetails/itemDetails';
 import ErrorMessage from '../errorMessage/errorMessage';
 import GotService from '../../services/gotService';
@@ -34,7 +34,7 @@ export default class CharacterPage extends Component {
     }
 
     const itemList = (
-      <ItemList
+      <CharList
         onItemSelected={this.onItemSelected}
         getData={this.gotService.getAllCharacters}
         renderItem={({name, gender}) => `${name} (${gender})`}/>

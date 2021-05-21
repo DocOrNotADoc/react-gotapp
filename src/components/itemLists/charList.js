@@ -4,11 +4,11 @@ import gotService from '../../services/gotService';
 import withData from '../dataPlugsLayout/dataPlugsLayout';
 
 
-class ItemList extends Component {
+class CharList extends Component {
 
     render() {
 
-        const NamesList = styled.ul`
+        const NamesList = styled.select`
             background-color: #f5f5ef;
             padding: 7px 25px;
             margin-bottom: 40px;
@@ -16,7 +16,7 @@ class ItemList extends Component {
             cursor: pointer;
             border: 1px solid rgba(0, 0, 0, 0.125);
         `;
-        const NameOfChar = styled.li`
+        const NameOfChar = styled.option`
             display: block;
             padding: 0.75rem 1.25rem;
             background-color: #f5f5ef;
@@ -45,7 +45,7 @@ class ItemList extends Component {
         const items = renderItems(data);
 
         return (
-            <NamesList>
+            <NamesList name='characters-list' size='10' multiple>
                 {items}
             </NamesList>
         );
@@ -53,4 +53,4 @@ class ItemList extends Component {
 }
 
 const {getAllCharacters} = new gotService();
-export default withData(ItemList, getAllCharacters);
+export default withData(CharList, getAllCharacters);

@@ -116,6 +116,7 @@ const RandomCharState = styled.li`
     }
     span {
         font-weight: bold;
+        
     }
     div {
         text-aligin: left;
